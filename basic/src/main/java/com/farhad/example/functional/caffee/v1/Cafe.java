@@ -7,8 +7,8 @@ import static java.util.stream.Collectors.toList;
 
 public class Cafe {
     
-    public Caffee buyCaffee(CreditCard cc) {
-        Caffee cup = new Caffee();
+    public Coffee buyCaffee(CreditCard cc) {
+        Coffee cup = new Coffee();
         // side-effect
         //how can we test this without contacting the bank or using a mock?
         cc.charge(cup.getCaffeePrice());
@@ -17,7 +17,7 @@ public class Cafe {
     }
 
     //
-    public List<Caffee> buyCoffees(CreditCard cc , int n) {
+    public List<Coffee> buyCaffees(CreditCard cc , int n) {
         return Stream
                      // how can reuse buyCaffee method to buy more caffee without charging the card multiple time?
                     .generate(() -> buyCaffee(cc)) 
