@@ -38,7 +38,7 @@
 #                           │ apply(Ctx)             │ apply(Ctx)
 #                           V                        V
 #              A,B    ┌───────────┐    C,D     ┌───────────┐
-#            -------> │ Ctx -> S1 │ ┌─────────>│ Ctx -> S2 │----> result
+#            ───────> │ Ctx -> S1 │ ┌─────────>│ Ctx -> S2 │----> result
 #              open   └───────────┘ │  credit  └───────────┘ 
 #                           │       │                │ 
 #                           │       │                │
@@ -57,8 +57,61 @@
 #                     └───────────┘         └───────────┘ 
 #                                                      
 #                                                     
-#                                                   
+## Reader monad
 #
 #
-
+#              A,B    ┌───────────┐    C,D     ┌───────────┐
+#            ───────> │ Ctx -> S1 │───────────>│ Ctx -> S2 │
+#              open   └───────────┘map(credit) └───────────┘ 
+#                                                | 
+#                                                |
+#                                                V S2
+#                         apply(Ctx) ┌───────────────┐
+#                       ───────────> │ Ctx -> result │────> result
+#                                    └───────────────┘ 
+#
+### Wrap up Toward a functional domain model
+#
+## API design is an iterative process
+#
+## Strive for immutability
+#
+#    private final Object obj;
+#
+## Confine side-effects
+#
+## Avoid using exceptions for error handling
+#
+## Say it with types
+#
+#    Tuple3< 
+#          Function< 
+#                   BankConnection, 
+#                   Try< Account > 
+#          > ,
+#          Optional< Address >,
+#          Future<
+#                 List< Withdrawal >
+#          > 
+#    >
+#
+## Use anemic object
+#
+#               ┌────────────────────────┐
+#               │        SERVICES        │
+#               │                        │  
+#               │       ┌────────┐       │
+#               │       │ DOMAIN │       │
+#               │       └────────┘       │
+#               │                        │
+#               └────────────────────────┘ 
+#
+#
+## Put domain logic in pure functions
+#
+## FP allows better Reusability & Composability
+#
+## Throw away your GoF copy ...
+#
+## … and learn some functional patterns
 
