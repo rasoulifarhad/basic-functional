@@ -22,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
+import static com.farhad.example.functional.bank.v2.BankService.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
@@ -65,6 +66,28 @@ public class BankTest {
                                         .collect(Collectors.toList());
         log.info("unpaid: {}",unpaid);
         assertThat(unpaid).contains(a,b,c);
+    }
+
+    @Test
+    public void bank_service_success_test() {
+
+        Try<Account> account = 
+                        open("account_a","123",new BigDecimal( 100.00 ));
+
+        log.info("Account failed: {}" ,account.isFailure());
+
+        assertThat(account.isFailure()).isFalse();
+    }
+
+    @Test
+    public void bank_service_failure_test() {
+
+        Try<Account> account = 
+                        open("account_a","123",new BigDecimal( -100.00 ));
+
+        log.info("Account failed: {}" ,account.isFailure());
+
+        assertThat(account.isFailure()).isTrue();
     }
 
 }
