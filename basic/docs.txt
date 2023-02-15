@@ -1,3 +1,55 @@
+## What is a function?
+#
+# FP defines a function not like most oop programming languages do but it defines it in mathematical terms.
+#
+#
+#                         ┌──────────┐
+#                         │    X     │
+#                         │    0 ────┼──────┐
+#                         │          │      │     ┌──────────┐
+#                         │          │      │     │          │
+#                         │          │      │     │    y     │ 
+#                         │          │      ╞═════╡──> 0     │ 
+#                         │          │      │     │          │
+#                         │    X`    │      │     │          │
+#                         │    0 ────┼──────┘     └──────────┘
+#                         │          │
+#                         └──────────┘
+#
+# Definition: 
+#
+#            "In mathematics, a function is a relation between sets that associates to every element of a first set exactly 
+#             one element of the second set"
+#
+# FP is all about composition, is all about taking small little functions that do very specific and generic behaviors and combining 
+# them to create more complex behaviors, this is done with a technique called Function Composition.
+#
+# Definition:
+#
+#             "Function composition is an operation that takes two functions f and g and produces a function h such 
+#              that h(x) = g(f(x))"
+#                                            Y
+#                                           /\
+#                                          /  \
+#                                        f/    \g
+#                                        /      \ 
+#                                      X/________\ Z
+#                                           fog
+#                                             
+# This means that if we have a function that takes an INT and returns a BOOL and we have a second function that takes a BOOL and 
+# returns a STRING, then we automatically have a third function that takes an INT and return a STRING, due to composition,
+#
+# Currying: 
+#
+#           "It is the technique of transforming a function that uses multiple arguments into a sequence of functions 
+#            that use a single argument"
+#
+# Partial application of a function:
+#
+#                                     Partial application is simply put, to execute a function with fewer arguments than you need 
+#                                     and thus creating a new behavior. 
+#
+#
 ## Bank Service 
 #                
 #    ┌───────────┐                             ┌───────────┐
