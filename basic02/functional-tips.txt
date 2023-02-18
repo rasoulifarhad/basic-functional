@@ -1,0 +1,111 @@
+### Functional 
+#  
+##
+#              
+#  Function<T, R>, BiFunction<T,U,R>
+#  
+#  Consumer<T> extends Function<T,Void>
+#  
+#  Supplier<T> extends Function<Void, T>
+#  
+#  Predicate<T> extends Function<T, Boolean>
+#  
+#  UnaryOperator<T> extends Function<T, T>
+#  
+#  BinaryOperator<T> extends BiFunction<T,T,T>
+#  
+### Design Patterns
+#
+## Monad
+#
+# Generic type:
+#  
+#  	public abstract class Monad<T> {
+#            T value ;
+#            // ....
+#       }
+#
+# 'unit' method:
+#  
+#        public <U> Monad<U> from(U value);
+#  
+# 'bind' method:
+#  
+#        public <U, R> Monad<R> map(Function<U, R> action);
+#  
+# WE NEED TO GO DEEPER
+#
+#        public <U, R> Monad<R> flatMap(Function<U, Monad<R>> action) 
+#
+## Monads in java 8
+#
+#   Optional   Encapsulation of operations  on optional values
+#
+#              Type: Optional<T>
+#              unit: Optional.ofNullable(), Optional.of()
+#              bind: Ooptionakl.flatMap() , Optional.map()
+#
+#             Filtering an Optional : 
+#                                      .filter(Predicate<T>)  
+#             Unwrapping an Optional:
+#                                      .get()
+#                                      .orElse(T default)
+#                                      .orElseGet(Supplier<T>)
+#                                      .orElseThrow(Supplier<Ex>)
+#                                      .ifPresent(Consumer<T>)
+#
+#   Stream    Encapsulation of operations  on MULTIPLE  items
+#
+#              Type: Stream<T>
+#              unit: Arrays.stream(), Stream.of(), Collection.stream()
+#              bind: Stream.flatMap() 
+#
+#   lazy-initialized
+#   nonreusable
+#
+#             intermediate operations:
+#                                      .map()
+#                                      .flatMap()
+#                                      .filter()
+#                                      .peek()
+#   
+#             Consuming Stream: 
+#
+#                                      .forEach(Consumer<T>)
+#                                      .collect()
+#                                      .reduce(BinaryOperator<T>)
+#                                      .allMatch(), anyMatch(), noneMatch()
+#                                      .findFirst(), findAny()
+#                                      ..count()
+#                                      .toArray()
+#   
+#             Collectors: 
+#
+#                                      .toList(), toMap(), toSet(), toCollection()
+#                                      .minBy(), maxBy()
+#                                      .joining()
+#                                      .partitioningBy()
+#                                      ...and many others
+#
+# Stream in APIs
+#
+#               "any string".chars()
+#               Files.newDirectoryStream()
+#               Random.ints()
+#               ....
+#
+#   CompletableFuture
+#
+##
+#
+#
+#
+##
+#
+#
+#
+##
+#
+#
+#
+#

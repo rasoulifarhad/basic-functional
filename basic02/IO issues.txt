@@ -1,0 +1,77 @@
+## I/O issues and DataFileMetadata
+#
+# One challenge we may face is that when we atttempt to access the contentds in DataFileMetadata instance for the first time, the remote 
+# server or even local file system may be temporarily unavailable. 
+#
+# This will cause a blow up and an Exception will be thrown that we will have to handle correctly in any client code. 
+#
+# Failure to handle it will result in our application failing.
+#
+# For example if I write some test code that attempts to access content from a fake URL
+#
+#   URLDataFileMetadata meta = new URLDataFileMetadata(10l,"url",new URL("http://xxxxx.com"));
+#   System.out.println(meta.getContents());
+#
+# Running it results in a horrendous stack trace.
+#
+# A hacky way around this may be to attempt to return null from loadContents instead when loading fails, temporarily swapping one 
+# problem for another.
+#
+# Which means any calling code attempting to use the contents of a DataFileMetadata instance has to defensively check for Nulls or 
+# risk runtime exceptions.
+#
+# There is a better option here (pun intended). The JDK does have a type that represents a value that can either be present or 
+# absent — Optional.
+#
+## What’s wrong with Optional?
+#
+# design APIs and implementations that make illegal states unrepresentable in your code.
+#
+# When we run this code :
+#
+#  Optional.empty().get();
+#
+# we will get a RuntimeException
+#
+# To avoid this we should check if an Optional isPresent before calling get(), which is pretty similar to how we defensively check 
+# for null in our code basis today. 
+#
+# "It would be better if our APIs didn’t expose methods like Optional::get that throw RuntimeExceptions!"
+#
+# Cyclops defines a safe Optional type called Option. Instead of Optional::get you can use overloaded methods such as Option::orElse 
+# to extract a value from the Option type safely.
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+

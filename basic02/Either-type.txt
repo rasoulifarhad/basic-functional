@@ -1,0 +1,45 @@
+## Either
+#
+# Either represents a value that can be of one two defined types.
+#
+#   Either<URL,File>
+# 
+# Either is defined as an interface with two types
+#
+#  Either<L,R>
+#
+# and has two concrete implementations each with a single type.
+#
+#    Left<L>
+#    Right<R>
+#  ├  ┬
+# 
+#                         ┌──────────┐ 
+#                         │  Either  │ 
+#                         └──────────┘ 
+#                              ^
+#                              │
+#                   ┌──────────┴───────────┐
+#                   │                      │
+#              ┌────┴────┐            ┌────┴────┐
+#              │   Left  │            │  Right  │  
+#              └─────────┘            └─────────┘ 
+#
+# In other words we can represent the disjoint nature of the relationship between the Left and Right type as separate 
+# classes in a shared inheritance hierarchy.
+#
+## Nullable fields are a design smell
+#
+# You should never have nullable fields, it is always a symptom of a design problem
+#
+# There are two options to fix it :
+#
+# 1. Make use of a Functional Sum Type (like Either, LazyEither3 and so on in Cyclops)
+# 2. Take advantage of inheritance and composition to define classes where redundant fields do not exist.
+#
+# By banning and enforcing nullable fields you will improve the overall quality of your applications designs, remove the need 
+# for defensive null checks and eliminate Runtime NPEs caused by accessing those fields.
+#
+#
+
+
